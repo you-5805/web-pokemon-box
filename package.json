@@ -1,6 +1,7 @@
 {
-  "name": "my-next-template",
-  "license": "MIT",
+  "name": "pokedex-demo",
+  "license": "UNLICENSED",
+  "private": true,
   "scripts": {
     "dev": "run-p dev:'*'",
     "dev:next": "next dev",
