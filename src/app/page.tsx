@@ -1,4 +1,4 @@
-import data from '@/data/pokemon.json';
+import data from '@/data/paldea.json';
 import Image from 'next/image';
 
 export default function Page() {

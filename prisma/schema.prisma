@@ -1,0 +1,34 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Pokemon {
+  id String @id @default(uuid()) @map("id")
+
+  name String @map("name")
+
+  globalNumber Int? @map("global_number")
+  gen_1_number Int? @map("gen_1_number")
+  gen_2_number Int? @map("gen_2_number")
+  gen_3_number Int? @map("gen_3_number")
+  gen_4_number Int? @map("gen_4_number")
+  gen_5_number Int? @map("gen_5_number")
+  gen_6_number Int? @map("gen_6_number")
+  gen_7_number Int? @map("gen_7_number")
+  gen_8_number Int? @map("gen_8_number")
+  gen_9_number Int? @map("gen_9_number")
+
+  statusH Int @map("status_h")
+  statusA Int @map("status_a")
+  statusB Int @map("status_b")
+  statusC Int @map("status_c")
+  statusD Int @map("status_d")
+  statusS Int @map("status_s")
+
+  @@map("pokemons")
+}
