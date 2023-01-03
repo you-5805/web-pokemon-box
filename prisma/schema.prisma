@@ -7,14 +7,13 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Pokemon {
+model PokedexEntry {
   id String @id @map("id")
 
-  baseName String  @map("base_name")
   name     String  @unique @map("name")
+  baseName String  @map("base_name")
   variant  String? @map("variant")
-
-  number Int @map("number")
+  number   Int     @map("number")
 
   statusH   Int @map("status_h")
   statusA   Int @map("status_a")
@@ -24,14 +23,87 @@ model Pokemon {
   statusS   Int @map("status_s")
   statusSum Int @map("status_sum")
 
-  @@map("pokemons")
+  pokemons Pokemon[]
+
+  @@map("pokedex_entries")
 }
 
 model AnonymousUser {
   id String @id @default(uuid()) @map("id")
 
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  parties  Party[]
+  pokemons Pokemon[]
 
   @@map("anonymous_users")
+}
+
+enum PartyPublicity {
+  PUBLIC
+  PRIVATE
+}
+
+model Party {
+  id String @id @default(uuid()) @map("id")
+
+  anonUser   AnonymousUser @relation(fields: [anonUserId], references: [id])
+  anonUserId String        @map("anon_user_id")
+
+  name      String         @map("name")
+  publicity PartyPublicity @map("publicity")
+
+  pokemons MidPartyToPokemon[]
+
+  @@map("parties")
+}
+
+model Pokemon {
+  id String @id @default(uuid()) @map("id")
+
+  pokedexEntry   PokedexEntry @relation(fields: [pokedexEntryId], references: [id])
+  pokedexEntryId String       @map("pokedex_entry_id")
+
+  anonUser   AnonymousUser @relation(fields: [anonUserId], references: [id])
+  anonUserId String        @map("anon_user_id")
+
+  parties MidPartyToPokemon[]
+
+  individualValueH Int @map("individual_value_h")
+  individualValueA Int @map("individual_value_a")
+  individualValueB Int @map("individual_value_b")
+  individualValueC Int @map("individual_value_c")
+  individualValueD Int @map("individual_value_d")
+  individualValueS Int @map("individual_value_s")
+
+  effortValueH Int @map("effort_value_h")
+  effortValueA Int @map("effort_value_a")
+  effortValueB Int @map("effort_value_b")
+  effortValueC Int @map("effort_value_c")
+  effortValueD Int @map("effort_value_d")
+  effortValueS Int @map("effort_value_s")
+
+  item   Item?   @relation(fields: [itemId], references: [id])
+  itemId String?
+
+  @@map("pokemons")
+}
+
+model MidPartyToPokemon {
+  party   Party  @relation(fields: [partyId], references: [id])
+  partyId String @map("party_id")
+
+  pokemon   Pokemon @relation(fields: [pokemonId], references: [id])
+  pokemonId String
+
+  @@id(fields: [partyId, pokemonId])
+  @@map("mid_party_to_pokemon")
+}
+
+model Item {
+  id String @id @default(uuid()) @map("id")
+
+  name    String    @unique
+  Pokemon Pokemon[]
 }
