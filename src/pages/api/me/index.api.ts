@@ -1,12 +1,8 @@
 import { setCookie } from '@/server/lib/setCookie';
 import { prisma } from '@/server/lib/prisma';
-import { z } from 'zod';
+import { authCookieSchema } from '@/server/schemas/auth';
 import { CookieSerializeOptions } from 'cookie';
 import type { NextApiHandler } from 'next';
-
-const cookieSchema = z.object({
-  anon_user_id: z.string().uuid(),
-});
 
 const cookieOptions = {
   httpOnly: true,
@@ -15,7 +11,7 @@ const cookieOptions = {
 } satisfies CookieSerializeOptions;
 
 const handler: NextApiHandler = async (req, res) => {
-  const parsed = cookieSchema.safeParse(req.cookies);
+  const parsed = authCookieSchema.safeParse(req.cookies);
   if (parsed.success) {
     const id = parsed.data.anon_user_id;
     setCookie(res, 'anon_user', id, cookieOptions);
