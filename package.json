@@ -1,5 +1,5 @@
 {
-  "name": "pokemon-gen9-api",
+  "name": "web-pokemon-box",
   "license": "UNLICENSED",
   "private": true,
   "scripts": {
@@ -40,7 +40,7 @@
     "@types/react-dom": "^18.0.8",
     "@typescript-eslint/eslint-plugin": "^5.14.0",
     "@typescript-eslint/parser": "^5.14.0",
-    "@vitejs/plugin-react": "^2.2.0",
+    "@vitejs/plugin-react": "^3.0.0",
     "@vitest/ui": "^0.24.3",
     "aspida": "^1.11.0",
     "autoprefixer": "^10.4.2",
