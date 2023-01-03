@@ -8,7 +8,7 @@ datasource db {
 }
 
 model Pokemon {
-  id String @id @default(uuid()) @map("id")
+  id String @id @map("id")
 
   baseName String  @map("base_name")
   name     String  @unique @map("name")
@@ -25,4 +25,13 @@ model Pokemon {
   statusSum Int @map("status_sum")
 
   @@map("pokemons")
+}
+
+model AnonymousUser {
+  id String @id @default(uuid()) @map("id")
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("anonymous_users")
 }
