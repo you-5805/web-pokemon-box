@@ -1,5 +1,7 @@
 export const pagesPath = {
-  $url: (url?: { hash?: string }) => ({ pathname: '/' as const, hash: url?.hash })
+  "pokedex": {
+    $url: (url?: { hash?: string }) => ({ pathname: '/pokedex' as const, hash: url?.hash })
+  }
 }
 
 export type PagesPath = typeof pagesPath
