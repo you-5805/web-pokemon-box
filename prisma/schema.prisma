@@ -10,25 +10,19 @@ datasource db {
 model Pokemon {
   id String @id @default(uuid()) @map("id")
 
-  name String @map("name")
+  baseName String  @map("base_name")
+  name     String  @unique @map("name")
+  variant  String? @map("variant")
 
-  globalNumber Int? @map("global_number")
-  gen_1_number Int? @map("gen_1_number")
-  gen_2_number Int? @map("gen_2_number")
-  gen_3_number Int? @map("gen_3_number")
-  gen_4_number Int? @map("gen_4_number")
-  gen_5_number Int? @map("gen_5_number")
-  gen_6_number Int? @map("gen_6_number")
-  gen_7_number Int? @map("gen_7_number")
-  gen_8_number Int? @map("gen_8_number")
-  gen_9_number Int? @map("gen_9_number")
+  number Int @map("number")
 
-  statusH Int @map("status_h")
-  statusA Int @map("status_a")
-  statusB Int @map("status_b")
-  statusC Int @map("status_c")
-  statusD Int @map("status_d")
-  statusS Int @map("status_s")
+  statusH   Int @map("status_h")
+  statusA   Int @map("status_a")
+  statusB   Int @map("status_b")
+  statusC   Int @map("status_c")
+  statusD   Int @map("status_d")
+  statusS   Int @map("status_s")
+  statusSum Int @map("status_sum")
 
   @@map("pokemons")
 }

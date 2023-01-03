@@ -4,7 +4,5 @@
 module.exports = {
   swcMinify: true,
   output: 'standalone',
-  experimental: {
-    appDir: true,
-  },
+  pageExtensions: ['page.tsx', 'api.ts'],
 };
