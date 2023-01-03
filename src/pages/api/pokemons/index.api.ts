@@ -1,5 +1,5 @@
 import { prisma } from '@/server/lib/prisma';
-import { NextApiHandler } from 'next';
+import type { NextApiHandler } from 'next';
 
 const handler: NextApiHandler = async (_, res) => {
   const pokemons = await prisma.pokemon.findMany({

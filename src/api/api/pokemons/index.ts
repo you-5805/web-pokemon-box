@@ -1,5 +1,5 @@
-import { Pokemon } from '@prisma/client';
-import { DefineMethods } from 'aspida';
+import type { Pokemon } from '@prisma/client';
+import type { DefineMethods } from 'aspida';
 
 export type Methods = DefineMethods<{
   get: {
