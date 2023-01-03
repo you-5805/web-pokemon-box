@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import { useId } from 'react';
 
 type Props = {
   name: string;
@@ -7,15 +8,20 @@ type Props = {
 };
 
 export const PokemonCard = ({ name, number, imageUrl }: Props) => {
+  const id = useId();
+
   return (
-    <div className='group flex h-32 w-32 flex-col items-center justify-center gap-2 rounded-md shadow-lg'>
+    <article
+      aria-labelledby={id}
+      className='group flex h-32 w-32 flex-col items-center justify-center gap-2 rounded-md shadow-lg'
+    >
       <div className='text-center group-hover:hidden'>
-        <p>{name}</p>
+        <h2 id={id}>{name}</h2>
         <p className='text-xs text-gray-600'>{`図鑑No. ${number}`}</p>
       </div>
       <div className='relative h-12 w-12 transition-all group-hover:h-20 group-hover:w-20'>
-        <Image src={imageUrl} fill title={name} alt='' />
+        <Image src={imageUrl} fill title={name} alt='' loading='lazy' decoding='async' />
       </div>
-    </div>
+    </article>
   );
 };

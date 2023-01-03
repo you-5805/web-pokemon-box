@@ -21,7 +21,7 @@
     },
     "module": "esnext",
     "resolveJsonModule": true,
-    "types": ["vitest/globals"],
+    "types": ["vitest/globals", "testing-library__jest-dom"],
     "plugins": [
       {
         "name": "next"
