@@ -104,6 +104,8 @@ model MidPartyToPokemon {
 model Item {
   id String @id @default(uuid()) @map("id")
 
-  name    String    @unique
+  name    String    @unique @map("name")
   Pokemon Pokemon[]
+
+  @@map("items")
 }
